@@ -265,7 +265,7 @@ export default {
     async onFetchProducts() {
       this.table.isLoading = true
       try {
-        const { data: { datas } } = await axios.get('http://localhost:8080/api/products')
+        const { data: { datas } } = await axios.get(`https://bakmi-gm-server-app.herokuapp.com/api/products`)
         this.table.items = datas
       } catch (error) {
         this.$bvToast.toast(error.message, {
@@ -319,7 +319,7 @@ export default {
     async onCreateSubmit() {
       try {
         const payload = { ...this.form }
-        const { data } = await axios.post('http://localhost:8080/api/products', payload)
+        const { data } = await axios.post(`https://bakmi-gm-server-app.herokuapp.com/api/products`, payload)
         this.onModalClose('create')
         this.onFetchProducts()
         this.$bvToast.toast(data.message, {
@@ -338,7 +338,7 @@ export default {
     async onEditSubmit() {
       try {
         const payload = { ...this.form }
-        const { data } = await axios.put(`http://localhost:8080/api/products/${this.form.code}`, payload)
+        const { data } = await axios.put(`https://bakmi-gm-server-app.herokuapp.com/api/products/${this.form.code}`, payload)
         this.onModalClose('edit')
         this.onFetchProducts()
         this.$bvToast.toast(data.message, {
@@ -356,7 +356,7 @@ export default {
     },
     async onDeleteSubmit() {
       try {
-        const { data } = await axios.delete(`http://localhost:8080/api/products/${this.form.code}`)
+        const { data } = await axios.delete(`https://bakmi-gm-server-app.herokuapp.com/api/products/${this.form.code}`)
         this.$bvToast.toast(data.message, {
           title: `Success`,
           variant: "success",
